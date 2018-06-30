@@ -97,6 +97,7 @@ public class CheckBoxAnswerFragment extends Fragment implements View.OnClickList
                     checkbox3 =true;
                 break;
         }
+        if (mListener != null)
         mListener.UserAnswer(checkbox1, checkbox2, checkbox3);
     }
 

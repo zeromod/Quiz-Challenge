@@ -12,15 +12,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link TextAnswerFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class TextAnswerFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
 
@@ -61,12 +52,12 @@ public class TextAnswerFragment extends Fragment {
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                //do nothing
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                //do nothing
             }
 
             @Override

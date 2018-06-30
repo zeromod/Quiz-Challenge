@@ -25,7 +25,7 @@ class QuestionsPageAdapter extends FragmentPagerAdapter {
             case 2:return CheckBoxAnswerFragment.newInstance(QUESTIONS[2],OPTIONS_Q3);
             case 3:return TextAnswerFragment.newInstance(QUESTIONS[3]);
             case 4:return CheckBoxAnswerFragment.newInstance(QUESTIONS[4],OPTIONS_Q5);
-            default:return null;
+            default:return TextAnswerFragment.newInstance(QUESTIONS[0]);
         }
     }
 

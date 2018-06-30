@@ -85,14 +85,17 @@ public class RadioAnswerFragment extends Fragment implements View.OnClickListene
         switch(v.getId()) {
             case R.id.radio_1:
                 if (checked)
+                    if (mListener != null)
                     mListener.UserAnswer(1);
                 break;
             case R.id.radio_2:
                 if (checked)
+                    if (mListener != null)
                     mListener.UserAnswer(2);
                 break;
             case R.id.radio_3:
                 if (checked)
+                    if (mListener != null)
                     mListener.UserAnswer(3);
                 break;
         }
