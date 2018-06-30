@@ -50,6 +50,6 @@
         <item>Notepad</item>
     </string-array>
     <string name="answer_q5_string">Answer 5 : Android Studio</string>
-    <string name="welcome">Welcome to Quiz App\n#Google India Scolorship Challenge</string>
+    <string name="welcome">Welcome to Quiz App\n#Google India Scholarship</string>
     <string name="start">Start</string>
 </resources>
