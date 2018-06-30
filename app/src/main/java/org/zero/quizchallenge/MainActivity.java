@@ -6,11 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements TextAnswerFragment.OnFragmentInteractionListener,RadioAnswerFragment.OnFragmentInteractionListener,CheckBoxAnswerFragment.OnFragmentInteractionListener {
 
     ViewPager viewPager;
-    TextView resultView, scoreView;
+    TextView scoreView,question1,question2,question3,question4,question5,result;
     Button nextButton;
     static int score = 0;
     String mUserAnswerString;
@@ -26,8 +27,14 @@ public class MainActivity extends AppCompatActivity implements TextAnswerFragmen
         viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(new QuestionsPageAdapter(getSupportFragmentManager(),this));
 
-        resultView = findViewById(R.id.result);
         scoreView = findViewById(R.id.score);
+
+        question1 = findViewById(R.id.question_1);
+        question2 = findViewById(R.id.question_2);
+        question3 = findViewById(R.id.question_3);
+        question4 = findViewById(R.id.question_4);
+        question5 = findViewById(R.id.question_5);
+        result = findViewById(R.id.result);
 
         nextButton = findViewById(R.id.next_button);
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements TextAnswerFragmen
 
     //Validator Class
     private class Validator {
+        final int CORRECT = getResources().getColor(android.R.color.holo_green_light);
+        final int WRONG = getResources().getColor(android.R.color.holo_red_light);
         private void validateTextAnswer(int currentItem) {
             if (mUserAnswerString == null)
                 noAnswerWarning();
@@ -111,21 +120,64 @@ public class MainActivity extends AppCompatActivity implements TextAnswerFragmen
         }
 
         void handleUI(boolean answer){
-            if (viewPager.getCurrentItem() == 4) {
+            int currentItem = viewPager.getCurrentItem();
+            if (currentItem == 0) {
+                question1.setText(getResources().getString(R.string.answer_q1_string));
+                if (answer) {
+                    score++;
+                    question1.setTextColor(CORRECT);
+                }
+                else question1.setTextColor(WRONG);
+            }
+
+            if (currentItem == 1) {
+                question2.setText(getResources().getString(R.string.answer_q2_string));
+                if (answer) {
+                    score++;
+                    question2.setTextColor(CORRECT);
+                }
+                else
+                    question2.setTextColor(WRONG);
+            }
+            if (currentItem == 2) {
+                question3.setText(getResources().getString(R.string.answer_q3_string));
+                if (answer) {
+                    score++;
+                    question3.setTextColor(CORRECT);
+                }
+                else question3.setTextColor(WRONG);
+            }
+
+            if (currentItem == 3) {
+                question4.setText(getResources().getString(R.string.answer_q4_string));
+                if (answer) {
+                    score++;
+                    question4.setTextColor(CORRECT);
+                }
+                else question4.setTextColor(WRONG);
+            }
+
+            if (currentItem == 4) {
+                question5.setText(getResources().getString(R.string.answer_q5_string));
+                if (answer) {
+                    score++;
+                    question5.setTextColor(CORRECT);
+                }
+                else question5.setTextColor(WRONG);
+
+                //Reached end of the Quiz,Display final score
                 nextButton.setVisibility(View.GONE);
+                result.setText(getResources().getString(R.string.result,score));
             }
-            if (answer){
-                score++;
-                scoreView.setText(String.valueOf(score));
-                viewPager.setCurrentItem(viewPager.getCurrentItem()+1,true);
-            }
-            else
-            {
-                viewPager.setCurrentItem(viewPager.getCurrentItem()+1,true);
-            }
+
+            //Update Score
+            scoreView.setText(getResources().getString(R.string.score_update,score));
+
+            viewPager.setCurrentItem(currentItem + 1 /* Adding 1 to move to next question*/,true);
         }
 
         private void noAnswerWarning() {
+            Toast.makeText(getApplicationContext(),"Please answer the question",Toast.LENGTH_SHORT).show();
         }
     }
 }

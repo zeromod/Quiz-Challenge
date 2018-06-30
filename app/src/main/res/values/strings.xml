@@ -3,37 +3,50 @@
     <string name="quiz_challenge">Quiz Challenge</string>
     <string name="answer_here">Answer here</string>
 
+    <string name="next">Next</string>
+    <string name="score">Score : 0</string>
+    <string name="score_update">Score : %1$d</string>
+    <string name="result">Congratulations, Your score is : %1$d</string>
+
+    <!--Questions-->
     <string-array name="questions">
-        <item>Current CEO of Google ?</item>
+        <item>Who is the current CEO of Google ?</item>
         <item>Android OS is based on ?</item>
         <item>Select Official Android version names from below</item>
         <item>What is the version name of Android 8 ?</item>
         <item>Which of these are IDEs ?</item>
     </string-array>
-    <string name="answer_q1">sundar pichai</string>
 
+    <!--Set 1-->
+    <string name="answer_q1">sundar pichai</string>
+    <string name="answer_q1_string">Answer 1 : Sundar Pichai</string>
+
+    <!--Set 2-->
     <string-array name="options_q2">
         <item>Microsoft Windows</item>
         <item>Linux Kernel</item>
         <item>Ubuntu</item>
     </string-array>
     <integer name="answer_q2">2</integer>
+    <string name="answer_q2_string">Answer 2 : Linux Kernel</string>
 
-
+    <!--Set 3-->
     <string-array name="options_q3">
         <item>KitKat</item>
         <item>JellyBean</item>
         <item>IceCreamPie</item>
     </string-array>
+    <string name="answer_q3_string">Answer 3 : Kitkat and Jellybean</string>
 
+    <!--Set 4-->
     <string name="answer_q4">oreo</string>
-    <string name="next">Next</string>
-    <string name="_0">0</string>
+    <string name="answer_q4_string">Answer 4 : Oreo</string>
 
+    <!--Set 5-->
     <string-array name="options_q5">
         <item>Android Studio</item>
         <item>Google Chrome</item>
         <item>Notepad</item>
     </string-array>
-
+    <string name="answer_q5_string">Answer 5 : Android Studio</string>
 </resources>
