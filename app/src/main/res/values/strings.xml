@@ -7,6 +7,7 @@
     <string name="score">Score : 0</string>
     <string name="score_update">Score : %1$d</string>
     <string name="result">Congratulations, Your score is : %1$d</string>
+    <string name="pref_previously_started">pref_previously_started</string>
 
     <!--Questions-->
     <string-array name="questions">
@@ -49,4 +50,6 @@
         <item>Notepad</item>
     </string-array>
     <string name="answer_q5_string">Answer 5 : Android Studio</string>
+    <string name="welcome">Welcome to Quiz App\n#Google India Scolorship Challenge</string>
+    <string name="start">Start</string>
 </resources>

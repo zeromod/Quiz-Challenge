@@ -1,5 +1,8 @@
 package org.zero.quizchallenge;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -70,6 +73,19 @@ public class MainActivity extends AppCompatActivity implements TextAnswerFragmen
     @Override
     public void UserAnswer(int userAnswer) {
         mUserAnswerRadioButton = userAnswer;
+    }
+
+    @Override
+    protected void onResume() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        boolean previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started), false);
+        if(!previouslyStarted) {
+            SharedPreferences.Editor edit = prefs.edit();
+            edit.putBoolean(getString(R.string.pref_previously_started), Boolean.TRUE);
+            edit.apply();
+            startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
+        }
+        super.onResume();
     }
 
     //Validator Class
