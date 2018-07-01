@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity implements TextAnswerFragmen
 
     ViewPager viewPager;
     TextView scoreView,question1,question2,question3,question4,question5,result;
-    Button nextButton;
+    Button validateButton;
     static int score = 0;
     String mUserAnswerString;
     int mUserAnswerRadioButton;
@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity implements TextAnswerFragmen
         question5 = findViewById(R.id.question_5);
         result = findViewById(R.id.result);
 
-        nextButton = findViewById(R.id.next_button);
-        nextButton.setOnClickListener(new View.OnClickListener() {
+        validateButton = findViewById(R.id.validate_button);
+        validateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (viewPager.getCurrentItem())
@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements TextAnswerFragmen
     private class Validator {
         final int CORRECT = getResources().getColor(android.R.color.holo_green_light);
         final int WRONG = getResources().getColor(android.R.color.holo_red_light);
+        int counterForLastPage = 0;
         private void validateTextAnswer(int currentItem) {
             if (mUserAnswerString == null)
                 noAnswerWarning();
@@ -138,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements TextAnswerFragmen
         void handleUI(boolean answer){
             int currentItem = viewPager.getCurrentItem();
             if (currentItem == 0) {
+                counterForLastPage++;
                 question1.setText(getResources().getString(R.string.answer_q1_string));
                 if (answer) {
                     score++;
@@ -147,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements TextAnswerFragmen
             }
 
             if (currentItem == 1) {
+                counterForLastPage++;
                 question2.setText(getResources().getString(R.string.answer_q2_string));
                 if (answer) {
                     score++;
@@ -156,6 +159,7 @@ public class MainActivity extends AppCompatActivity implements TextAnswerFragmen
                     question2.setTextColor(WRONG);
             }
             if (currentItem == 2) {
+                counterForLastPage++;
                 question3.setText(getResources().getString(R.string.answer_q3_string));
                 if (answer) {
                     score++;
@@ -165,6 +169,7 @@ public class MainActivity extends AppCompatActivity implements TextAnswerFragmen
             }
 
             if (currentItem == 3) {
+                counterForLastPage++;
                 question4.setText(getResources().getString(R.string.answer_q4_string));
                 if (answer) {
                     score++;
@@ -174,15 +179,18 @@ public class MainActivity extends AppCompatActivity implements TextAnswerFragmen
             }
 
             if (currentItem == 4) {
+                counterForLastPage++;
                 question5.setText(getResources().getString(R.string.answer_q5_string));
                 if (answer) {
                     score++;
                     question5.setTextColor(CORRECT);
                 }
                 else question5.setTextColor(WRONG);
+            }
 
-                //Reached end of the Quiz,Display final score
-                nextButton.setVisibility(View.GONE);
+            //Reached end of the Quiz,Display final score
+            if (counterForLastPage == 5) {
+                validateButton.setVisibility(View.GONE);
                 result.setText(getResources().getString(R.string.result,score));
             }
 
