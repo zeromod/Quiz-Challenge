@@ -1,4 +1,4 @@
-package org.zero.quizchallenge;
+package org.zero.quizchallenge.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import org.zero.quizchallenge.R;
 
 public class TextAnswerFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";

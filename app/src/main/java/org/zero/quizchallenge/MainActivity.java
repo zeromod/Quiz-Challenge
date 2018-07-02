@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.zero.quizchallenge.Fragments.CheckBoxAnswerFragment;
+import org.zero.quizchallenge.Fragments.RadioAnswerFragment;
+import org.zero.quizchallenge.Fragments.TextAnswerFragment;
+
 public class MainActivity extends AppCompatActivity implements TextAnswerFragment.OnFragmentInteractionListener,RadioAnswerFragment.OnFragmentInteractionListener,CheckBoxAnswerFragment.OnFragmentInteractionListener {
 
     ViewPager viewPager;

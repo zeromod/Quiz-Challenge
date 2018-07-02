@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".RadioAnswerFragment">
+    tools:context=".Fragments.RadioAnswerFragment">
     <TextView
         android:id="@+id/radio_question"
         android:layout_width="match_parent"

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CheckBoxAnswerFragment">
+    tools:context=".Fragments.CheckBoxAnswerFragment">
 
     <TextView
         android:id="@+id/check_question"

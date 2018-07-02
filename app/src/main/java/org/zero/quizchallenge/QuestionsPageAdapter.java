@@ -4,6 +4,9 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import org.zero.quizchallenge.Fragments.CheckBoxAnswerFragment;
+import org.zero.quizchallenge.Fragments.RadioAnswerFragment;
+import org.zero.quizchallenge.Fragments.TextAnswerFragment;
 
 class QuestionsPageAdapter extends FragmentPagerAdapter {
     private Context mContext;
