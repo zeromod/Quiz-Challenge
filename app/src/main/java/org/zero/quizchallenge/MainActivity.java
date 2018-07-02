@@ -18,12 +18,14 @@ import org.zero.quizchallenge.Fragments.TextAnswerFragment;
 public class MainActivity extends AppCompatActivity implements TextAnswerFragment.OnFragmentInteractionListener,RadioAnswerFragment.OnFragmentInteractionListener,CheckBoxAnswerFragment.OnFragmentInteractionListener {
 
     ViewPager viewPager;
-    TextView scoreView,question1,question2,question3,question4,question5,result;
+    TextView scoreView, answer1, answer2, answer3, answer4, answer5,result;
     Button validateButton;
-    static int score = 0;
+    static int score;
     String mUserAnswerString;
     int mUserAnswerRadioButton;
     boolean[] mUserAnswerCheckBox = new boolean[3];
+    int counterForLastPage = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +38,11 @@ public class MainActivity extends AppCompatActivity implements TextAnswerFragmen
 
         scoreView = findViewById(R.id.score);
 
-        question1 = findViewById(R.id.question_1);
-        question2 = findViewById(R.id.question_2);
-        question3 = findViewById(R.id.question_3);
-        question4 = findViewById(R.id.question_4);
-        question5 = findViewById(R.id.question_5);
+        answer1 = findViewById(R.id.answer_1);
+        answer2 = findViewById(R.id.answer_2);
+        answer3 = findViewById(R.id.answer_3);
+        answer4 = findViewById(R.id.answer_4);
+        answer5 = findViewById(R.id.answer_5);
         result = findViewById(R.id.result);
 
         validateButton = findViewById(R.id.validate_button);
@@ -96,7 +98,6 @@ public class MainActivity extends AppCompatActivity implements TextAnswerFragmen
     private class Validator {
         final int CORRECT = getResources().getColor(android.R.color.holo_green_light);
         final int WRONG = getResources().getColor(android.R.color.holo_red_light);
-        int counterForLastPage = 0;
         private void validateTextAnswer(int currentItem) {
             if (mUserAnswerString == null)
                 noAnswerWarning();
@@ -144,52 +145,52 @@ public class MainActivity extends AppCompatActivity implements TextAnswerFragmen
             int currentItem = viewPager.getCurrentItem();
             if (currentItem == 0) {
                 counterForLastPage++;
-                question1.setText(getResources().getString(R.string.answer_q1_string));
+                answer1.setText(getResources().getString(R.string.answer_q1_string));
                 if (answer) {
                     score++;
-                    question1.setTextColor(CORRECT);
+                    answer1.setTextColor(CORRECT);
                 }
-                else question1.setTextColor(WRONG);
+                else answer1.setTextColor(WRONG);
             }
 
             if (currentItem == 1) {
                 counterForLastPage++;
-                question2.setText(getResources().getString(R.string.answer_q2_string));
+                answer2.setText(getResources().getString(R.string.answer_q2_string));
                 if (answer) {
                     score++;
-                    question2.setTextColor(CORRECT);
+                    answer2.setTextColor(CORRECT);
                 }
                 else
-                    question2.setTextColor(WRONG);
+                    answer2.setTextColor(WRONG);
             }
             if (currentItem == 2) {
                 counterForLastPage++;
-                question3.setText(getResources().getString(R.string.answer_q3_string));
+                answer3.setText(getResources().getString(R.string.answer_q3_string));
                 if (answer) {
                     score++;
-                    question3.setTextColor(CORRECT);
+                    answer3.setTextColor(CORRECT);
                 }
-                else question3.setTextColor(WRONG);
+                else answer3.setTextColor(WRONG);
             }
 
             if (currentItem == 3) {
                 counterForLastPage++;
-                question4.setText(getResources().getString(R.string.answer_q4_string));
+                answer4.setText(getResources().getString(R.string.answer_q4_string));
                 if (answer) {
                     score++;
-                    question4.setTextColor(CORRECT);
+                    answer4.setTextColor(CORRECT);
                 }
-                else question4.setTextColor(WRONG);
+                else answer4.setTextColor(WRONG);
             }
 
             if (currentItem == 4) {
                 counterForLastPage++;
-                question5.setText(getResources().getString(R.string.answer_q5_string));
+                answer5.setText(getResources().getString(R.string.answer_q5_string));
                 if (answer) {
                     score++;
-                    question5.setTextColor(CORRECT);
+                    answer5.setTextColor(CORRECT);
                 }
-                else question5.setTextColor(WRONG);
+                else answer5.setTextColor(WRONG);
             }
 
             //Reached end of the Quiz,Display final score
@@ -207,5 +208,61 @@ public class MainActivity extends AppCompatActivity implements TextAnswerFragmen
         private void noAnswerWarning() {
             Toast.makeText(getApplicationContext(),"Please answer the question",Toast.LENGTH_SHORT).show();
         }
+    }
+
+    //Handle orientation Changes
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putInt("SCORE",score);
+        outState.putString("SCORE_VIEW",scoreView.getText().toString());
+        outState.putInt("COUNTER_FOR_LAST_PAGE",counterForLastPage);
+
+        outState.putString("USER_ANSWER_STRING",mUserAnswerString);
+        outState.putInt("USER_ANSWER_RADIO_BUTTON",mUserAnswerRadioButton);
+        outState.putBooleanArray("USER_ANSWER_CHECKBOX",mUserAnswerCheckBox);
+
+        outState.putString("ANSWER_1",answer1.getText().toString());
+        outState.putInt("COLOR_ANSWER_1",answer1.getCurrentTextColor());
+        outState.putString("ANSWER_2",answer2.getText().toString());
+        outState.putInt("COLOR_ANSWER_2",answer2.getCurrentTextColor());
+        outState.putString("ANSWER_3",answer3.getText().toString());
+        outState.putInt("COLOR_ANSWER_3",answer3.getCurrentTextColor());
+        outState.putString("ANSWER_4",answer4.getText().toString());
+        outState.putInt("COLOR_ANSWER_4",answer4.getCurrentTextColor());
+        outState.putString("ANSWER_5",answer5.getText().toString());
+        outState.putInt("COLOR_ANSWER_5",answer5.getCurrentTextColor());
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        if (savedInstanceState != null)
+        {
+            score = savedInstanceState.getInt("SCORE");
+            scoreView.setText(savedInstanceState.getString("SCORE_VIEW"));
+            counterForLastPage = savedInstanceState.getInt("COUNTER_FOR_LAST_PAGE");
+
+            mUserAnswerString = savedInstanceState.getString("USER_ANSWER_STRING");
+            mUserAnswerRadioButton = savedInstanceState.getInt("USER_ANSWER_RADIO_BUTTON");
+            mUserAnswerCheckBox = savedInstanceState.getBooleanArray("USER_ANSWER_CHECKBOX");
+
+            //Reached end of the Quiz,Display final score
+            if (counterForLastPage == 5) {
+                validateButton.setVisibility(View.GONE);
+                result.setText(getResources().getString(R.string.result,score));
+            }
+
+            answer1.setText(savedInstanceState.getString("ANSWER_1"));
+            answer1.setTextColor(savedInstanceState.getInt("COLOR_ANSWER_1"));
+            answer2.setText(savedInstanceState.getString("ANSWER_2"));
+            answer2.setTextColor(savedInstanceState.getInt("COLOR_ANSWER_2"));
+            answer3.setText(savedInstanceState.getString("ANSWER_3"));
+            answer3.setTextColor(savedInstanceState.getInt("COLOR_ANSWER_3"));
+            answer4.setText(savedInstanceState.getString("ANSWER_4"));
+            answer4.setTextColor(savedInstanceState.getInt("COLOR_ANSWER_4"));
+            answer5.setText(savedInstanceState.getString("ANSWER_5"));
+            answer5.setTextColor(savedInstanceState.getInt("COLOR_ANSWER_5"));
+        }
+        super.onRestoreInstanceState(savedInstanceState);
     }
 }
